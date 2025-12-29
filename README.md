@@ -1,5 +1,5 @@
 # 📊 Lululemon Sales Data Analysis
-![Lululemon Sales Analysis Banner](assets/lululemon_sales_banner.png)
+![Lululemon Sales Analysis Banner](assets/logo.png)
 
 ## Overview
 This project explores sales performance data for **Lululemon**, focusing on trends, product performance, and revenue drivers. The goal is to extract actionable insights using data analysis and visualization techniques.
