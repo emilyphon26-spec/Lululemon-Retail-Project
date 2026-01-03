@@ -4,10 +4,8 @@
   (Synthetic Retail Dataset | SQL | Tableau)
 </h1>
 
-## Overview
-This research analyses whether promotion is efficient for **Lululemon** retail transactions, with a special focus on understanding how promotions influence consumer purchase behavior, especially average amount per transaction. Synthetic data was purposefully used to provide full control over advertising structure, timing, and product behavior, allowing for full evaluation without confidentiality limitations.
-
-Instead of considering promotions as basic revenue sources, this research focuses on additional behavioral lift by comparing transactions with and without promotions, separated by region and product. The byproduct of this analysis is a Tableau dashboard powered by SQL-driven metric programming.
+## Client Background
+Lululemon is a worldwide athletic wear shop with strong brand loyalty and premium pricing. Promotions are used strategically to drive demand, move inventory, and attract consumers; however, discounts must be carefully considered because they might cut profit without delivering substantial additional volume. This study assesses promotion-driven behavioral lift with a controlled synthetic dataset that simulates genuine retail dynamics (product catalog, store regions, promotions within a time frame, and daily transactions).
 
 ## Business Context
 The following features of a Lululemon retail chain are simulated by the synthetic dataset:
@@ -17,8 +15,6 @@ The following features of a Lululemon retail chain are simulated by the syntheti
 - Periodically, discounts of 10%, 20%, or 30% are used to promote specific items.
 - Promotions are product-specific and have a time limit.
 
-The goal is to determine if promotions encourage more purchases.
-
 ## Objectives
 The key goals of this project are:
 - Measure the promotional additional revenue.
@@ -27,17 +23,67 @@ The key goals of this project are:
 - Find out which goods react best to reductions.
 - Use sales data to demonstrate solid data modeling and metric design principles.
 
-## Dataset
-Why Use Synthetic Data?
-Real retail transaction data is rarely made available. Instead of working with low-quality or unclear datasets, this project provides realistic, customizable retail data in Python.
+## Summary
+**Promo Effectiveness (Behavioral Lift)**
+This study measures promotion impact using Avg Quantity Per Transaction, which avoids revenue distortion caused purely by discounting.
+**Headline results (from CSVs):**
+- Avg Quantity With Promotion: 1.4149
+- Avg Quantity Without Promotion: 1.1475
+- Promotional Lift: +23.30%
+- Highest Regional Lift: East (+26.01%)
+<p align="center"> <img src=""C:\Users\emzph\Downloads\Lululemon Retail Analysis\Visualizations\Dashboard.pdf" alt="Tableau dashboard overview" width="900"> </p>
 
-This method allows:
-- Exact modeling of promotion time and discount depth
-- A simple difference between promoted and non-promoted transactions.
-- Reproducibility and transparency.
-> Data has been cleaned and preprocessed to handle missing values, outliers, and inconsistencies.
+## Dataset and Schema
+<table align="center">
+**Dataset Structure**
+<div align="center">
+  <img width="680" src=""C:\Users\emzph\Downloads\Lululemon Retail Analysis\Visualizations\Schema.png">
+</div>
+<table> 
+  <thead> 
+    <tr> 
+      <th>Component</th> 
+      <th>Value</th> 
+      <th>Notes</th> </tr> 
+  </thead> 
+  <tbody> 
+    <tr>
+      <td>Date Range</td>
+      <td>2024-01-01 → 2024-12-30</td>
+      <td>365 unique days</td></tr> 
+    <tr>
+      <td>Total Transactions</td>
+      <td>63,890</td>
+      <td>Transaction-level rows</td>
+    </tr> 
+    <tr>
+      <td>Stores</td>
+      <td>10</td>
+      <td>Across 3 regions</td>
+    </tr> 
+    <tr>
+      <td>Regions</td>
+      <td>3</td>
+      <td>Central, East, West</td>
+    </tr> 
+    <tr>
+      <td>Products</td>
+      <td>50</td>
+      <td>Across 5 categories</td>
+    </tr> 
+    <tr>
+      <td>Promotions</td>
+      <td>47</td>
+      <td>Product-level date-range promos</td>
+    </tr> 
+    <tr>
+      <td>Promoted Txn Share</td>
+      <td>3.61%</td>
+      <td>Transactions during promo windows</td>
+    </tr> 
+  </tbody> 
+</table>
 
-## Schema Overview
-<h1>
-  <img src="assets/Schema.png" alt="Schema" width="32" style="margin-right: 8px; padding-top: 10px" />
-</h1>
+## KPI Framework
+
+
