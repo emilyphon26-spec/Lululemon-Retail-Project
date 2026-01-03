@@ -31,13 +31,13 @@ This study measures promotion impact using Avg Quantity Per Transaction, which a
 - Avg Quantity Without Promotion: 1.1475
 - Promotional Lift: +23.30%
 - Highest Regional Lift: East (+26.01%)
-<p align="center"> <img src=""C:\Users\emzph\Downloads\Lululemon Retail Analysis\Visualizations\Dashboard.pdf" alt="Tableau dashboard overview" width="900"> </p>
+<p align="center"> <img src="Dashboard.pdf" alt="Tableau dashboard overview" width="900"> </p>
 
 ## Dataset and Schema
 <table align="center">
 **Dataset Structure**
 <div align="center">
-  <img width="680" src=""C:\Users\emzph\Downloads\Lululemon Retail Analysis\Visualizations\Schema.png">
+  <img width="680" src="Schema.png">
 </div>
 <table> 
   <thead> 
