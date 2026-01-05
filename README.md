@@ -50,6 +50,7 @@ The analysis guarantees consistency between underlying logic and visual output b
 
 ## Dataset and Schema
 <table align="center">
+  
 **Dataset Structure**
 <div align="center">
   <img width="500" src="assets/Schema.png">
