@@ -24,6 +24,12 @@ The key goals of this project are:
 - Use sales data to demonstrate solid data modeling and metric design principles.
 
 ## Summary
+# Terminology & Abbreviations
+- **Txn**: Transaction  
+- **Promo Txn**: A transaction occurring during an active promotion window  
+- **Lift**: Percentage change in average quantity per transaction relative to baseline  
+- **Avg Qty / Txn**: Average quantity per transaction
+
 **Promo Effectiveness (Behavioral Lift)**
 This study measures promotion impact using Avg Quantity Per Transaction, which avoids revenue distortion caused purely by discounting.
 **Headline results (from CSVs):**
@@ -31,13 +37,22 @@ This study measures promotion impact using Avg Quantity Per Transaction, which a
 - Avg Quantity Without Promotion: 1.1475
 - Promotional Lift: +23.30%
 - Highest Regional Lift: East (+26.01%)
-<p align="center"> <img src="assets/Dashboard.png" alt="Tableau dashboard overview" width="900"> </p>
+<p align="center"> <img src="assets/Dashboard.png" alt="Tableau dashboard overview" width="600"> </p>
+
+These results are combined into an interactive, executive-facing manner in the Tableau dashboard. While regional and product-level charts allow stakeholders to dig deeper into areas of interest, KPI tiles offer instant visibility into the overall promotional impact.
+
+The dashboard is intended to assist with: 
+- Strategic planning (where promotions are most effective)
+- Execution of strategy (items to promote)
+- Performance tracking (how lift varies by segment or over time)
+
+The analysis guarantees consistency between underlying logic and visual output by directly matching dashboard measurements with developed SQL KPIs.
 
 ## Dataset and Schema
 <table align="center">
 **Dataset Structure**
 <div align="center">
-  <img width="680" src="assets/Schema.png">
+  <img width="500" src="assets/Schema.png">
 </div>
 <table> 
   <thead> 
@@ -49,12 +64,12 @@ This study measures promotion impact using Avg Quantity Per Transaction, which a
   <tbody> 
     <tr>
       <td>Date Range</td>
-      <td>2024-01-01 → 2024-12-30</td>
+      <td>2024-01-01 to 2024-12-30</td>
       <td>365 unique days</td></tr> 
     <tr>
       <td>Total Transactions</td>
       <td>63,890</td>
-      <td>Transaction-level rows</td>
+      <td>Transaction rows</td>
     </tr> 
     <tr>
       <td>Stores</td>
@@ -122,9 +137,13 @@ KPI Behavioral definitions
     </tr> 
   </tbody> 
 </table>
+The KPI framework purposefully places more emphasis on behavioral measurements than just profits. Measuring based on revenue may overestimate promotional performance even in cases when customer behavior does not significantly change since promotions simply lower prices. This study separates variations in basket size, which more accurately represent extra demand, by concentrating on average amount per transaction. This method provides an answer to a more strategic question: _Do consumers genuinely purchase more goods during a promotion, or do they just pay less for the same item?_ 
+
+In order to ensure that findings may be interpreted as progressive impacts rather than absolute differences, Promotional Lift is defined in relation to the non-promoted baseline. This KPI design is in line with typical retail analytics procedures used to assess campaign efficacy and promotional ROI.
 
 ## Findings (Based On CSV data)
 **Promotional Lift Results**
+
 <table> 
   <thead> 
     <tr> 
@@ -155,9 +174,15 @@ KPI Behavioral definitions
     </tr> 
   </tbody> 
 </table>
+The findings demonstrate a unique and significant behavioral reaction to promotions. During promotional periods, the average amount per transaction rises from 1.1475 units under normal circumstances to 1.4149 units, representing a 23.30% promotional lift. This suggests that promotions are encouraging people to add more products to their baskets rather than just lowering their current purchases. Considering the very small percentage of transactions exposed to promotions, the size of this rise is significant.
+
+Crucially, this impact is seen even when promotions are brief and product-specific, indicating that, when properly targeted, even a little amount of promotional exposure can result in significant behavioral changes. However, these findings should be understood as demand-side effect rather than profitability because this research concentrates on quantity rather than margin or revenue. If discount level is not covered by incremental units, promotions may still be unproductive.
 
 **Highest Regional Lift Results**
 
+<div align="center">
+  <img width="300" src="assets/Regional Lift.png">
+</div>
 <table> 
   <thead> 
     <tr> 
@@ -193,7 +218,17 @@ KPI Behavioral definitions
   </tbody> 
 </table>
 
+Regional differences in promotional efficacy are significant. With a 26.01% boost, the East area shows the highest reaction, surpassing both the West (22.44%) and Central (21.67%) regions.
+
+The differences imply that consumer openness to marketing changes by region. Regional variations in price sensitivity, client demographics, competition pressure, or baseline purchase habit are examples of potential factors.
+
+These findings suggest that distributing promotional capital evenly throughout regions might not be the best course of action from a strategic standpoint. While locations with lower lift could need other tactics like product bundling or non-price incentives, regions with more responsiveness might be able to justify more frequent or deeper discounts. The precise causes of regional variations are controlled rather than seen since the dataset is synthetic. Nonetheless, the structure is similar to actual retail trends, where promotional strategy heavily relies on geographic variability.
+
 **Top Products By Promotional Lift (Top 5)**
+
+<div align="center">
+  <img width="680" src="assets/Product Lift.png">
+</div>
 <table>
   <thead>
     <tr>
@@ -261,6 +296,12 @@ KPI Behavioral definitions
   </tbody>
 </table>
 
+A subset of items exhibit a high concentration of promotional lift, according to product-level data. The best-performing products have lift values that are much higher than the average, ranging from about 33% to over 42%.
+
+Notably, these items fall under several categories, such as shorts, accessories, and outerwear. This implies that specific product attributes like price point, frequency of purchases, and perceived voluntary nature have an impact on promotional interest in addition to category-driven factors.
+
+While expensive goods (like the Rain Rebel Jacket) could profit from promotion by lowering psychological purchase barriers, cheaper accessories (like the Light Locks Scrunchie) show considerable lift, perhaps as a result of impulsive buying behavior.
+
 **Discount Mix During Promotions**
 <table> 
   <thead> 
@@ -288,3 +329,36 @@ KPI Behavioral definitions
     </tr> 
   </tbody> 
 </table>
+
+Nearly half of all promoted transactions occur under 30% discounts, with smaller shares attributable to 10% and 20% promotions. This distribution suggests a strong reliance on deeper discounts to drive promotional activity.
+
+While deeper discounts appear effective in generating transaction volume, they also carry higher margin risk. Without revenue and cost data, it is not possible to determine whether 30% discounts produce superior net returns relative to shallower promotions.
+
+From an analytical standpoint, this finding highlights an important next step: evaluating lift efficiency, defined as incremental quantity gained per percentage point of discount. Such an analysis would help determine whether smaller discounts could achieve comparable behavioral effects at lower cost.
+
+## Recommendations
+
+**Prioritize Promotions in High-Response Regions**
+Outperforming both the West and Central areas, the East region has the highest promotional lift (~26%). This implies that consumers in the East are more receptive to promotional offers, either because they are more aware of promotions or because they are more price sensitive. Lululemon can take actions such as
+- Give the East area a larger portion of advertising campaigns.
+- While keeping longer or deeper campaigns in high-lift locations, test slightly shorter marketing periods in lower-lift regions.
+- When choosing where to use new marketing tactics, use regional lift as a restriction indicator.
+This in turn will enhance effectiveness of advertisements by focusing discounts on areas with the best behavioral return.
+
+**Products**
+Promotional impact is concentrated among just a handful of products. The top five goods show a 30-40%+ boost, well above the total average.
+Actionable Steps:
+- Create a short list of "promo-responsive" items based on historical lift.
+- Discounts on certain goods should be prioritized above wide category-level promotions.
+- Avoid marketing low-response goods that don't significantly improve basket size.
+This will increase demand per promotion and decrease in margins.
+
+**Discounts**
+Nearly half of advertised transactions are at 30% discounts, indicating a dependence on bigger price drops to generate demand. While successful, deeper discounts have a larger margin risk.
+Actionable Steps:
+- Test if 20% reductions result in a comparable rise for high-response goods.
+- Determine lift efficiency (incremental amount per percentage point of discount).
+- Save larger discounts for items or times that have demonstrated responsiveness.
+This will maintain promotional effectiveness while lowering discount costs and improving profitability potential.
+
+
