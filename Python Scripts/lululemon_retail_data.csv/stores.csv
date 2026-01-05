@@ -1,0 +1,11 @@
+store_id,store_name,region
+1,Lululemon Vancouver,West
+2,Lululemon Seattle,West
+3,Lululemon Los Angeles,West
+4,Lululemon San Francisco,West
+5,Lululemon New York,East
+6,Lululemon Boston,East
+7,Lululemon Miami,East
+8,Lululemon Chicago,Central
+9,Lululemon Denver,Central
+10,Lululemon Austin,Central
