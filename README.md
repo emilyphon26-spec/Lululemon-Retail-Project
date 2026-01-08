@@ -24,7 +24,7 @@ The key goals of this project are:
 - Use sales data to demonstrate solid data modeling and metric design principles.
 
 ## Summary
-# Terminology & Abbreviations
+**Terminology & Abbreviations**
 - **Txn**: Transaction  
 - **Promo Txn**: A transaction occurring during an active promotion window  
 - **Lift**: Percentage change in average quantity per transaction relative to baseline  
